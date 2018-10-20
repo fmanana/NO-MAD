@@ -32,7 +32,7 @@
 
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+          <li class="nav-item active"><a href="{{ url_for('contact') }}" class="nav-link">Contact</a></li>
         </ul>
       </div>
     </div>
@@ -49,37 +49,17 @@
 						<table>
 							<thead>
 								<tr class="row100 head">
-									<th class="cell100 column1">Airline</th>
+									<th class="cell100 column1">Departure</th>
 								</tr>
 							</thead>
 							<tbody>
+									{% for holiday in flights %}
+									{% for quote in flights[holiday]["Quotes"]%}
 								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
+									<td class="cell100 column1"> {{quote["OutboundLeg"]["OriginId"]}} </td>
 								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
-
-								<tr class="row100 body">
-									<td class="cell100 column1"> {{ OriginID }} </td>
-								</tr>
+									{% endfor %}
+									{% endfor %}
 							</tbody>
 						</table>
 					</div>
@@ -92,16 +72,16 @@
 										<th class="cell100 column2">Departure date</th>
 										<th class="cell100 column3">return date</th>
 										<th class="cell100 column4"> Direct </th>
-										<th class="cell100 column5">action</th>
+										<th class="cell100 column5">Book Now!</th>
 									</tr>
 								</thead>
 								<tbody>
 										{% for holiday in flights %}
-										{% for quote in holiday["Quotes"]%}
+										{% for quote in flights[holiday]["Quotes"]%}
 									<tr class="row100 body">
-										<td class="cell100 column1"> quote["MinPrice"] </td>
-										<td class="cell100 column1"> quote["OutboundLeg"]["DepartureDate"] </td>
-										<td class="cell100 column1"> quote["InboundLeg"]["DepartureDate"] </td>
+										<td class="cell100 column1"> {{quote["MinPrice"]}} </td>
+										<td class="cell100 column1"> {{quote["OutboundLeg"]["DepartureDate"]}} </td>
+										<td class="cell100 column1"> {{quote["InboundLeg"]["DepartureDate"]}} </td>
 										{% if quote["Direct"] %}
 										<td class="cell100 column4">Direct</td>
 										{%else %}
