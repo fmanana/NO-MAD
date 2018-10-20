@@ -27,7 +27,7 @@
       <div class="container">
         <div class="row slider-text align-items-center">
           <div class="col-md-7 col-sm-12 ftco-animate">
-            <h1 class="mb-3">Experience the best trip ever</h1>
+            <h1 class="mb-8">Experience the best trip ever</h1>
           </div>
         </div>
       </div>
@@ -57,13 +57,60 @@
   </section>
   <!-- END slider -->
 
-  <div class="dropdown dropdown">
-    <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-    <div id="myDropdown" class="dropdown-content">
-      <a href="#">Jacobs University</a>
-      <a href="#">UPC</a>
-    </div>
+
+  <div class="dropdown dropdown" id="feedback">
+      <div class="selection">
+        <form action="/search" method="POST">
+        <label class="sr-only" for="rating">University</label>
+        <select class="university" id="university" name="university">
+          <option value= "Choose your University"selected>Choose your University</option>
+          <option value="Jacobs University">JUB</option>
+          <option value="UPC">UPC</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-default" type="submit">Submit!</button>
+      </div>
+    </form>
   </div>
+
+
+  <section class="ftco-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-5">
+        <div class="col-md-7 text-center heading-section ftco-animate">
+          <h2>Our Services</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services d-block text-center">
+            <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-sailboat"></span></div></div>
+            <div class="media-body p-2">
+              <h3 class="heading">Special Activities</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services d-block text-center">
+            <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-around"></span></div></div>
+            <div class="media-body p-2">
+              <h3 class="heading">Travel Arrangements</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3 d-flex align-self-stretch ftco-animate">
+          <div class="media block-6 services d-block text-center">
+            <div class="d-flex justify-content-center"><div class="icon d-flex justify-content-center mb-3"><span class="align-self-center flaticon-compass"></span></div></div>
+            <div class="media-body p-2">
+              <h3 class="heading">Private Guide</h3>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+            </div>
+          </div>
+        </div>
+
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
