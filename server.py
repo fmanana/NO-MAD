@@ -1,6 +1,5 @@
 import json
 import requests
-from urllib.request import urlopen
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import jinja2
