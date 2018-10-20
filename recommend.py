@@ -21,7 +21,8 @@ def recommend(start, end, location):
     end = [int(x) for x in end]
     #Load the string into a json data
     quotes = json.loads(response.text)
-
+    #List to contain possible quotes
+    filtered_quotes = {"Quotes" : []}
     #filter return dates that are before end of holiday and after break starts
     for quote in quotes["Quotes"]:
         #get the date part
@@ -33,10 +34,9 @@ def recommend(start, end, location):
         dep_date = [int(x) for x in dep_date.split('-')]
 
         #condition to satisfy
-        if dep_date[0] < start[0] and dep_date[1] < start[1] and dep_date[2] > start[2]:
-            quotes.popitem(quote)
-        elif ret_date[0] > end[0] and ret_date[1] > end[1] and ret_date[2] > end[2]:
-            quotes.popitem(quote)
+        if dep_date[0] >= start[0] and dep_date[1] >= start[1] and dep_date[2] >= start[2]:
+            if ret_date[0] <= end[0] and ret_date[1] <= end[1] and ret_date[2] <= end[2]:
+                filtered_quotes["Quotes"].append(quote)
     
     #return filtered json
     return quotes
