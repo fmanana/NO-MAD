@@ -9,8 +9,6 @@ jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystem
 
 app = Flask(__name__)
 
-#URL =  'https;//website.com"
-
 @app.route("/")
 @app.route("/home")
 def home():
@@ -20,12 +18,8 @@ def home():
 def search():
     if request.methods == 'POST':
         university = request.form['university']
-        flights = (university)
-        return render_template('flights.html', flights=flights)
-    else:
-        return render_template('index.html')
+        #flights = (university)
+        return render_template('flights.html', university=university)
 
-
-
-#var output
-## Uploading flight data
+if __name__ == "__main__":
+    app.run(debug=True)
