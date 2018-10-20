@@ -6,7 +6,6 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}">
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
 	<!--===============================================================================================-->
@@ -97,61 +96,23 @@
 									</tr>
 								</thead>
 								<tbody>
+										{% for holiday in flights %}
+										{% for quote in holiday["Quotes"]%}
 									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-										<td class="cell100 column4"> Direct </td>
+										<td class="cell100 column1"> quote["MinPrice"] </td>
+										<td class="cell100 column1"> quote["OutboundLeg"]["DepartureDate"] </td>
+										<td class="cell100 column1"> quote["InboundLeg"]["DepartureDate"] </td>
+										{% if quote["Direct"] %}
+										<td class="cell100 column4">Direct</td>
+										{%else %}
+										<td class="cell100 column4">Indirect</td>
+										{%endif%}
 										<td class="cell100 column5">action</td>
 									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
-
-									<tr class="row100 body">
-										<td class="cell100 column1"> price </td>
-										<td class="cell100 column2"> departure date </td>
-										<td class="cell100 column3"> return date </td>
-											<td class="cell100 column4"> Direct </td>
-										<td class="cell100 column5">action</td>
-									</tr>
+										{%endfor%}
+										{%endfor%}
+									
+									
 								</tbody>
 							</table>
 						</div>
