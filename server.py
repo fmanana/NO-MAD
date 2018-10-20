@@ -2,6 +2,10 @@ import json
 import requests
 from urllib.request import urlopen
 from flask import Flask, render_template, request
+import os
+import jinja2
+
+jinja_environment = jinja2.Environment(autoescape=True, loader=jinja2.FileSystemLoader('templates'))
 
 app = Flask(__name__)
 
