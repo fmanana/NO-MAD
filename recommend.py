@@ -7,22 +7,27 @@ with open("key.txt",'r') as keyfile:
     key = keyfile.readline()
 
 # takes in possible interval of dates from which
-# arrival and departure is going to be compared
+# arrival and departure is going to be chosen
 def recommend(start, end, location):
-    
-    #Get int value for camparison
-    end = end.split('-')
+    print(start,end,location)
     #split for calling with partial dates
+    end = end.split('-')
     start = start.split('-')
+
+    #request url
     req_str = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/FR/eur/en-US/"+ location +"/us/"+ ("-").join(start[0:2]) +"/" + ("-").join(end[0:2]) +"?apikey="+key
     response = requests.get(req_str)
-    #Change to int for comparison
-    start = [int(x) for x in start]
-    end = [int(x) for x in end]
+
+    
     #Load the string into a json data
     quotes = json.loads(response.text)
     #List to contain possible quotes
     filtered_quotes = {"Quotes" : []}
+
+    #Change to int for comparison
+    start = [int(x) for x in start]
+    end = [int(x) for x in end]
+
     #filter return dates that are before end of holiday and after break starts
     for quote in quotes["Quotes"]:
         #get the date part
@@ -39,14 +44,27 @@ def recommend(start, end, location):
                 filtered_quotes["Quotes"].append(quote)
     
     #return filtered json
-    return quotes
+    return json.dumps(filtered_quotes)
 
 
-'''def uni_data(university):
+def uni_data(university):
+    #Get the university's data
     with open("dates.json",'r') as uni_file:
         data = json.loads(uni_file.read())
     
-    for holiday in data["universities"][university]:
-'''
+    #library to hold possible flights for each holiday
+    flights = {}
+    counter = 1
 
-recommend("2019-01-01","2019-01-07","de")
+    #iterate through each holiday 
+    for holiday in data["universities"][university]['holidays']:
+
+        #call function with holiday details and save results
+        flights[counter] = recommend(holiday["start"],holiday["end"],data["universities"][university]["code"])
+        counter += 1
+    
+    return flights
+
+
+result = uni_data("jacobs")
+print(recommend("2019-01-01","2019-01-07","de")==result[1])
