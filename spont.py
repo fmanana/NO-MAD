@@ -31,13 +31,20 @@ def spont(university,end):
     for place in dat["Places"]:
         new_places[str(place["PlaceId"])] = place["Name"]
     
-    #Change ids to names for places and get date alone from time
+    #Carrier library. id:name
+    new_airlines = {}
+    for airline in dat["Carriers"]:
+        new_airlines[str(airline["CarrierId"])] = airline["Name"]
+
+    #Change ids, to names for places and get date alone from time
     for quote in dat["Quotes"]:
         quote["OutboundLeg"]["OriginId"] = new_places[str(quote["OutboundLeg"]["OriginId"])]
         quote["OutboundLeg"]["DestinationId"] = new_places[str(quote["OutboundLeg"]["DestinationId"])]
+        quote["OutboundLeg"]["CarrierIds"][0] = new_airlines[str(quote["OutboundLeg"]["CarrierIds"][0])]
         quote["OutboundLeg"]["DepartureDate"] = quote["OutboundLeg"]["DepartureDate"].split('T')[0]
         quote["InboundLeg"]["OriginId"] = new_places[str(quote["InboundLeg"]["OriginId"])]
         quote["InboundLeg"]["DestinationId"] = new_places[str(quote["InboundLeg"]["DestinationId"])]
+        quote["InboundLeg"]["CarrierIds"][0] = new_airlines[str(quote["InboundLeg"]["CarrierIds"][0])]
         quote["InboundLeg"]["DepartureDate"] = quote["InboundLeg"]["DepartureDate"].split('T')[0]
 
     return dat
