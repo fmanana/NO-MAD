@@ -11,12 +11,14 @@ with open("key.txt",'r') as keyfile:
 def recommend(start, end, location):
     
     #Get int value for camparison
-    end = [int(x) for x in end.split('-')]
+    end = end.split('-')
     #split for calling with partial dates
-    start = [int(x) for x in start.split('-')]
-    req_str = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/FR/eur/en-US/"+ location +"/us/"+ ("-").join(start[0:2]) +"/anytime?apikey"+key
+    start = start.split('-')
+    req_str = "http://partners.api.skyscanner.net/apiservices/browsequotes/v1.0/FR/eur/en-US/"+ location +"/us/"+ ("-").join(start[0:2]) +"/" + ("-").join(end[0:2]) +"?apikey="+key
     response = requests.get(req_str)
-
+    #Change to int for comparison
+    start = [int(x) for x in start]
+    end = [int(x) for x in end]
     #Load the string into a json data
     quotes = json.loads(response.text)
 
