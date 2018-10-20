@@ -21,6 +21,7 @@ def search():
     if request.method == 'POST':
         university = request.form['university']
         recommended = json.loads(recommend.uni_data(university))
+        print( json.dumps(recommended, indent=2))
         return render_template('flights.html', flights=recommended)
     else:
         return render_template('index.html')

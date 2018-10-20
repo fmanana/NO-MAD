@@ -1,7 +1,7 @@
 {
     "universities" : {
         
-        "jacobs" : {
+        "Jacobs University" : {
             "holidays" : 
             [
                 {
@@ -18,7 +18,7 @@
         },
     
     
-        "upc" : {
+        "UPC" : {
             "holidays" : 
             [
                 {
