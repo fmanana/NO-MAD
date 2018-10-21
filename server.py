@@ -15,14 +15,24 @@ app = Flask(__name__, static_folder=os.path.join(os.getcwd(),'static'))
 def home():
     return render_template('index.html')
 
-@app.route('/search', methods=['GET', 'POST'])
-def search():
-    if request.method == 'POST':
-        university = request.form['university']
-        recommended = recommend.uni_data(university)
-        return render_template('flights.html', flights=recommended)
-    else:
-        return render_template('index.html')
+@app.route('/search/<type>', methods=['GET', 'POST'])
+def search(type):
+    if type == 'Holiday':
+        print(type)
+        if request.method == 'POST':
+            university = request.form['university']
+            recommended = recommend.uni_data(university)
+            return render_template('flights.html', flights=recommended)
+        else:
+            return "Using GET"#render_template('index.html')
+    elif type == 'Budget':
+        print(type)
+        if request.method == 'POST':
+            budget = request.form['budget']
+            flights = budget.uni_data(university)
+            return render_template('flights.html', flights=recommended)
+        else:
+            return "Using GET"#render_template('index.html')
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():

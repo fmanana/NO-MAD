@@ -26,14 +26,6 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/icomoon.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/style1.css' )}}">
-	<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
-	<link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Flight Ticket Booking  Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design" />
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-
 </head>
 <body id="firstPage">
 
@@ -141,13 +133,13 @@
 				<div class="clearfix"> </div>
 				<div class="resp-tabs-container">
 					<div class="tab-1 resp-tab-content roundtrip">
-						<form action="#" method="post">
+						<form>
 							<div class="university">
 								<h3>University</h3>
-								<form action="/search" method="POST">
+								<form action="/search/Holiday" method="GET">
 									<label class="sr-only" for="rating"></label>
 									<select class="university" id="university" name="university">
-										<option value= "Choose your University"selected>Choose your University</option>
+										<option value= "Choose your University" selected>Choose your University</option>
 										<option value="Jacobs University">Jacobs University Bremen</option>
 										<option value="UPC">UPC</option>
 									</select>
@@ -160,7 +152,21 @@
 
 
 					<div class="tab-1 resp-tab-content oneway">
-						<form action="#" method="post">
+            <form action="/search/Budget" method="POST">
+              <form>
+                <div class="university">
+                  <h3>University</h3>
+                  <form action="/search/Holiday" method="GET">
+                    <label class="sr-only" for="rating"></label>
+                    <select class="university" id="university" name="university">
+                      <option value= "Choose your University" selected>Choose your University</option>
+                      <option value="Jacobs University">Jacobs University Bremen</option>
+                      <option value="UPC">UPC</option>
+                    </select>
+                  </div>
+                  <input type="submit" value="Search Flights">
+                </div>
+              </form>
 							<div class="budget">
 								<h3>Budget</h3>
 								<input type="int" name="budget" class="budget" placeholder="amount of money" required="">
@@ -210,8 +216,8 @@
 	</script>
 	<!--//script for portfolio-->
 	<!-- Calendar -->
-	<link rel="stylesheet" href="css/jquery-ui.css" />
-	<script src="js/jquery-ui.js"></script>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.css') }}" />
+	<script src="{{ url_for('static', filename='js/jquery-ui.js') }}"></script>
 	<script>
 	$(function() {
 		$( "#datepicker,#datepicker1,#datepicker2,#datepicker3" ).datepicker();
