@@ -53,12 +53,10 @@
 								</tr>
 							</thead>
 							<tbody>
-									{% for holiday in flights %}
-									{% for quote in flights[holiday]["Quotes"]%}
+									{% for quote in flights%}
 								<tr class="row100 body">
 									<td class="cell100 column1"> {{quote["OutboundLeg"]["OriginId"]}} </td>
 								</tr>
-									{% endfor %}
 									{% endfor %}
 							</tbody>
 						</table>
@@ -76,8 +74,7 @@
 									</tr>
 								</thead>
 								<tbody>
-										{% for holiday in flights %}
-										{% for quote in flights[holiday]["Quotes"]%}
+										{% for quote in flights %}
 									<tr class="row100 body">
 										<td class="cell100 column1"> {{quote["MinPrice"]}} </td>
 										<td class="cell100 column1"> {{quote["OutboundLeg"]["DepartureDate"]}} </td>
@@ -89,7 +86,6 @@
 										{%endif%}
 										<td class="cell100 column5">action</td>
 									</tr>
-										{%endfor%}
 										{%endfor%}
 									
 									

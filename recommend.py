@@ -45,9 +45,11 @@ def recommend(start, end, location):
     
     #Places library. id:name
     new_places = {}
+    #Place by sky scanner code. id:SkyScanner code
+    ss_code = {}
     for place in quotes["Places"]:
         new_places[str(place["PlaceId"])] = place["Name"]
-
+        ss_code[str(place["PlaceId"])] = place["SkyscannerCode"]
     #Carrier library. id:name
     new_airlines = {}
     for airline in quotes["Carriers"]:
@@ -64,7 +66,7 @@ def recommend(start, end, location):
         quote["InboundLeg"]["CarrierIds"][0] = new_airlines[str(quote["InboundLeg"]["CarrierIds"][0])]
         quote["InboundLeg"]["DepartureDate"] = quote["InboundLeg"]["DepartureDate"].split('T')[0]
     #return filtered json
-    return filtered_quotes
+    return filtered_quotes["Quotes"]
 
 
 def uni_data(university):
@@ -73,14 +75,10 @@ def uni_data(university):
         data = json.loads(uni_file.read())
     
     #library to hold possible flights for each holiday
-    flights = {}
-    counter = 1
-
+    flights = {'Quotes' : []}
     #iterate through each holiday 
     for holiday in data["universities"][university]['holidays']:
 
         #call function with holiday details and save results
-        flights[counter] = recommend(holiday["start"],holiday["end"],data["universities"][university]["code"])
-        counter += 1
-    
-    return json.dumps(flights)
+        flights['Quotes']+=(recommend(holiday["start"],holiday["end"],data["universities"][university]["code"]))
+    return sorted(flights['Quotes'], key = lambda k: k['MinPrice'])

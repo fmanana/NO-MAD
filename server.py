@@ -1,6 +1,5 @@
 import json
 import requests
-from urllib.request import urlopen
 from flask import Flask, render_template, request, redirect, url_for
 import os
 import jinja2
@@ -20,8 +19,7 @@ def home():
 def search():
     if request.method == 'POST':
         university = request.form['university']
-        recommended = json.loads(recommend.uni_data(university))
-        #print( json.dumps(recommended, indent=2))
+        recommended = recommend.uni_data(university)
         return render_template('flights.html', flights=recommended)
     else:
         return render_template('index.html')
